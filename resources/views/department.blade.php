@@ -41,7 +41,7 @@
         <tbody>
             @foreach ($department as $dept)
                 <tr>
-                    <td>{{ $dept->name }}</td>
+                    <td><a href="{{ route('showByDepartment', $dept->id) }}">{{ $dept->name }}</a></td>
                     <td>{{ $dept->department_head ?? 'N/A' }}</td>
                     <td>{{ $dept->contact ?? 'N/A' }}</td>
                 </tr>
