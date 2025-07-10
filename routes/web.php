@@ -15,13 +15,10 @@ use App\Http\Controllers\myViewController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 // Route::get('/students', [studentController::class, 'showView'])->name('students.list');
 // Route::get('/students/details', [studentController::class, 'detailsView'])->name('students.details');
-Route::get('/home', [myViewController::class, 'showhome'])->name('home');
-//Route::get('/department', [myViewController::class, 'showdept'])->name('department');
+Route::get('/', [myViewController::class, 'showhome'])->name('home');
+//Route::get('/home', [myViewController::class, 'showhome'])->name('home');
 Route::get('/department', [DepartmentController::class, 'fetchdept'])->name('department');
 Route::get('/circular', [myViewController::class, 'showcircular'])->name('circular');
 Route::get('/policy', [myViewController::class, 'showpolicy'])->name('policy');

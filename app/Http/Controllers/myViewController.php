@@ -15,11 +15,23 @@ class myViewController extends Controller
         return view('department');
     }
     
-    public function showCircular(){
-        $circular = Circular::all();
+    public function showCircular(Request $request){
+
+        $searchText=$request->get('search');
+        if($searchText){
+            $circular = Circular::where(function($query) use ($searchText) {
+                $query->where('subject', 'like', '%' . $searchText . '%')
+                      ->orWhere('department', 'like', '%' . $searchText . '%')
+                      ->orWhere('circular_no', 'like', '%' . $searchText . '%');
+            })->get();
+        }else{
+        $circular = Circular::get();
+    }
         return view('circular', ['circular' => $circular]);
+       
     }
     
+
     public function showpolicy(){
         return view('policy');
     }

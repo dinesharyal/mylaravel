@@ -16,7 +16,6 @@
 
 <nav class="navbar">
     <ul>
-        <li><a href="{{ url('/home') }}">Home</a></li>
         <li><a href="{{ url('/department') }}">Departments</a></li>
         <li><a href="{{ url('/circular') }}">Circular</a></li>
         <li><a href="{{ url('/policy') }}">Policy</a></li>

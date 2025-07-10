@@ -30,6 +30,9 @@
 
 @section('content')
     <h2>Circulars</h2>
+   <form method="GET" action="{{ route('circular') }}">
+        <input type="text" name="search" placeholder="Search" value="{{ request('search') }}">
+        <button type="submit">Search</button>
     <table class="custom-table">
         <thead>
             <tr>
