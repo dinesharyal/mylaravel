@@ -20,4 +20,5 @@ class DepartmentController extends Controller
         $employees = Employees::where('department_id', $departmentId)->get();
         return view('employee', compact('employees', 'department'));
     }
+    
 }

@@ -29,6 +29,27 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Welcome to Circular Page</h2>
-    <p>This is the RBB Intranet circular content.</p>
+    <h2>Circulars</h2>
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Circular No</th>
+                <th>Date</th>
+                <th>Department</th>
+                <th>Subject</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($circular as $circular)
+                <tr>
+                    <td>{{ $circular->circular_no}}</td>
+                    <td>{{ $circular->circular_date }}</td>
+                    <td>{{ $circular->department}}</td>
+                    <td>{{ $circular->subject}}</td>
+                    <td><a href="{{ asset($circular->file_path) }}" target="_blank">View</a></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>    
 @endsection

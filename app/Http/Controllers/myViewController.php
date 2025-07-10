@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Circular;
 
 class myViewController extends Controller
 {
@@ -14,8 +15,9 @@ class myViewController extends Controller
         return view('department');
     }
     
-    public function showcircular(){
-        return view('circular');
+    public function showCircular(){
+        $circular = Circular::all();
+        return view('circular', ['circular' => $circular]);
     }
     
     public function showpolicy(){
