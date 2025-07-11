@@ -11,4 +11,9 @@ class department extends Model
 
     protected $table = 'department'; // Specify the table name if it differs from the model name
     protected $fillable = ['name', 'department_head', 'contact']; // Define fillable attributes
+    
+    public function circulars()
+    {
+        return $this->hasMany(Circular::class, 'dept_id');
+    }
 }

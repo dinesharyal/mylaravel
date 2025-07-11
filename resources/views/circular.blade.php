@@ -48,7 +48,7 @@
                 <tr>
                     <td>{{ $circular->circular_no}}</td>
                     <td>{{ $circular->circular_date }}</td>
-                    <td>{{ $circular->department}}</td>
+                    <td>{{ $circular->department->name?? 'NA'}}</td>
                     <td>{{ $circular->subject}}</td>
                     <td><a href="{{ asset($circular->file_path) }}" target="_blank">View</a></td>
                 </tr>

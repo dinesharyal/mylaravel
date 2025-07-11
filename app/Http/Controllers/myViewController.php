@@ -7,43 +7,54 @@ use App\Models\Circular;
 
 class myViewController extends Controller
 {
-    public function showhome(){
+    public function showhome()
+    {
         return view('home');
     }
-    
-    public function showdept(){
+
+    public function showdept()
+    {
         return view('department');
     }
-    
-    public function showCircular(Request $request){
 
-        $searchText=$request->get('search');
-        if($searchText){
-            $circular = Circular::where(function($query) use ($searchText) {
-                $query->where('subject', 'like', '%' . $searchText . '%')
-                      ->orWhere('department', 'like', '%' . $searchText . '%')
-                      ->orWhere('circular_no', 'like', '%' . $searchText . '%');
-            })->get();
-        }else{
-        $circular = Circular::get();
-    }
+    public function showCircular(Request $request)
+    {
+        $searchText = $request->get('search');
+
+        if ($searchText) {
+            $circular = Circular::with('department')
+                ->where(function ($query) use ($searchText) {
+                    $query->where('subject', 'like', '%' . $searchText . '%')
+                        ->orWhereHas('department', function ($q) use ($searchText) {
+                            $q->where('name', 'like', '%' . $searchText . '%');
+                        })
+                        ->orWhere('circular_no', 'like', '%' . $searchText . '%');
+                })
+                ->get();
+        } else {
+            $circular = Circular::with('department')->get();
+        }
         return view('circular', ['circular' => $circular]);
-       
     }
-    
 
-    public function showpolicy(){
+
+
+    public function showpolicy()
+    {
         return view('policy');
     }
-    
-    public function showgallery(){
+
+    public function showgallery()
+    {
         return view('gallery');
     }
-    
-    public function showTraining(){
+
+    public function showTraining()
+    {
         return view('training');
     }
-    public function showUnion(){
+    public function showUnion()
+    {
         return view('unionnotice');
-    }   
+    }
 }
