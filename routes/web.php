@@ -4,6 +4,7 @@ use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\studentController;
 use App\Http\Controllers\myViewController;
+use App\Http\Controllers\adminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,6 @@ Route::get('/gallery', [myViewController::class, 'showgallery'])->name('gallery'
 Route::get('/training', [myViewController::class, 'showTraining'])->name('training');
 Route::get('/union', [myViewController::class, 'showUnion'])->name('union');
 Route::get('/employee/{departmentId}', [DepartmentController::class, 'showByDepartment'])->name('showByDepartment');
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function(){
+Route::get('/dashboard',[adminController::class,'index'])->name('dashboard');   
+});
