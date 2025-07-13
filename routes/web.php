@@ -30,3 +30,6 @@ Route::get('/employee/{departmentId}', [DepartmentController::class, 'showByDepa
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function(){
 Route::get('/dashboard',[adminController::class,'index'])->name('dashboard');   
 });
+Route::get('/login', function () {
+    return 'Dummy login page for testing admin panel';
+})->name('login');
