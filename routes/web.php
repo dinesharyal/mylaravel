@@ -33,3 +33,6 @@ Route::get('/dashboard',[adminController::class,'index'])->name('dashboard');
 Route::get('/login', function () {
     return 'Dummy login page for testing admin panel';
 })->name('login');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

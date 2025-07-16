@@ -29,6 +29,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Welcome to Union Page</h2>
-    <p>This is the RBB Intranet union content.</p>
+    <h2>Union Notice:</h2>
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Union Name</th>
+                <th>Subject</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($notices as $notice)
+                <tr>
+                    <td>{{ $notice->date }}</td>
+                    <td>{{ $notice->union->short_name ?? 'N/A' }}</td>
+                    <td>{{ $notice->subject }}</td>
+                    <td>
+                        @if (!empty($notice->file_path))
+                        <a href="{{ asset($notice->file_path) }}" target="_blank">View</a>
+                        @else
+                        No File
+                         @endif
+                    </td>
+
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection

@@ -32,3 +32,4 @@
     <h2>Welcome to Training Page</h2>
     <p>This is the RBB Intranet training content.</p>
 @endsection
+

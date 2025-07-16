@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Circular;
+use App\Models\Union;
+use App\Models\UnionNotice;
 
 class myViewController extends Controller
 {
@@ -28,7 +30,8 @@ class myViewController extends Controller
                         ->orWhereHas('department', function ($q) use ($searchText) {
                             $q->where('name', 'like', '%' . $searchText . '%');
                         })
-                        ->orWhere('circular_no', 'like', '%' . $searchText . '%');
+                        ->orWhere('circular_no', 'like', '%' . $searchText . '%')
+                        ->orWhere('circular_date','like','%' .$searchText .'%');
                 })
                 ->get();
         } else {
@@ -55,6 +58,7 @@ class myViewController extends Controller
     }
     public function showUnion()
     {
-        return view('unionnotice');
+        $notices = UnionNotice::with('union')->get();
+        return view('unionnotice',['notices'=>$notices]);
     }
 }

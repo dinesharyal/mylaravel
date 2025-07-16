@@ -11,7 +11,7 @@ class DepartmentController extends Controller
     public function fetchdept()
     {
         $departments = Department::all();
-        return view('department', ['department' => $departments]);
+        return view('department', ['departments' => $departments]); //use departments as key of associative array same is used in view.
     }
 
     public function showByDepartment($departmentId)
